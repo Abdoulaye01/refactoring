@@ -284,17 +284,22 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 				empDetails.getComponent(i).setEnabled(false);
 				((JComboBox<String>) empDetails.getComponent(i)).addItemListener(this);
 				((JComboBox<String>) empDetails.getComponent(i)).setRenderer(new DefaultListCellRenderer() {
-					// set foregroung to combo boxes
-					public void paint(Graphics g) {
-						setForeground(new Color(65, 65, 65));
-						super.paint(g);
-					}// end paint
+					
 				});
 			} // end else if
 		} // end for
 		return empDetails;
 	}// end detailsPanel
 
+	
+	// set foregroung to combo boxes
+	@Override
+	public void paint(Graphics g) {
+		setForeground(new Color(65, 65, 65));
+		super.paint(g);
+	}// end paint
+	
+	
 	// display current Employee details
 	public void displayRecords(Employee thisEmployee) {
 		int countGender = 0;
@@ -435,6 +440,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 	}// end lastRecord
 
 	// search Employee by ID
+
 	public void searchEmployeeById() {
 		boolean found = false;
 
@@ -480,6 +486,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 	}// end searchEmployeeByID
 
 	// search Employee by surname
+
 	public void searchEmployeeBySurname() {
 		boolean found = false;
 		// if any active Employee record search for ID else do nothing
@@ -518,6 +525,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 	}// end searchEmployeeBySurname
 
 	// get next free ID from Employees in the file
+
 	public int getNextFreeId() {
 		int nextFreeId = 0;
 		// if file is empty or all records are empty start with ID 1 else look
@@ -650,7 +658,8 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 	}// end isSomeoneToDisplay
 
 	// check for correct PPS format and look if PPS already in use
-	public boolean correctPps(String pps, long currentByte) {
+
+	public boolean correctEmployeePps(String pps, long currentByte) {
 		boolean ppsExist = false;
 		// check for correct PPS format based on assignment description
 		if (pps.length() == 8 || pps.length() == 9) {
@@ -705,7 +714,8 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 	}// end checkForChanges
 
 	// check for input in text fields
-	private boolean checkInput() {
+	//Make sure we are not talk about input file
+	private boolean checkTextfieldInput() {
 		boolean valid = true;
 		// if any of inputs are in wrong format, colour text field and display
 		// message
@@ -713,7 +723,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 			employeePpsField.setBackground(new Color(255, 150, 150));
 			valid = false;
 		} // end if
-		if (employeePpsField.isEditable() && correctPps(employeePpsField.getText().trim(), currentFilePosition)) {
+		if (employeePpsField.isEditable() && correctEmployeePps(employeePpsField.getText().trim(), currentFilePosition)) {
 			employeePpsField.setBackground(new Color(255, 150, 150));
 			valid = false;
 		} // end if
@@ -773,7 +783,8 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 	}// end setToWhite
 
 	// enable text fields for editing
-	public void setEnabled(boolean booleanValue) {
+
+	public void setEnabledTextField(boolean booleanValue) {
 		boolean search;
 		if (booleanValue)
 			search = false;
@@ -985,69 +996,69 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 	public void actionPerformed(ActionEvent e) {
 
 		if (e.getSource() == closeApp) {
-			if (checkInput() && !checkForChanges())
+			if (checkTextfieldInput() && !checkForChanges())
 				exitApp();
 		} else if (e.getSource() == open) {
-			if (checkInput() && !checkForChanges())
+			if (checkTextfieldInput() && !checkForChanges())
 				openFile();
 		} else if (e.getSource() == save) {
-			if (checkInput() && !checkForChanges())
+			if (checkTextfieldInput() && !checkForChanges())
 				saveFile();
 			change = false;
 		} else if (e.getSource() == saveAs) {
-			if (checkInput() && !checkForChanges())
+			if (checkTextfieldInput() && !checkForChanges())
 				saveFileAs();
 			change = false;
 		} else if (e.getSource() == searchById) {
-			if (checkInput() && !checkForChanges())
+			if (checkTextfieldInput() && !checkForChanges())
 				displaySearchByIdDialog();
 		} else if (e.getSource() == searchBySurname) {
-			if (checkInput() && !checkForChanges())
+			if (checkTextfieldInput() && !checkForChanges())
 				displaySearchBySurnameDialog();
 		} else if (e.getSource() == searchId_btn || e.getSource() == searchByIdField)
 			searchEmployeeById();
 		else if (e.getSource() == searchSurname_btn || e.getSource() == searchBySurnameField)
 			searchEmployeeBySurname();
 		else if (e.getSource() == saveChange_btn) {
-			if (checkInput() && !checkForChanges())
+			if (checkTextfieldInput() && !checkForChanges())
 				;
 		} else if (e.getSource() == cancelChange_btn)
 			cancelChange();
 		else if (e.getSource() == firstItem || e.getSource() == first_btn) {
-			if (checkInput() && !checkForChanges()) {
+			if (checkTextfieldInput() && !checkForChanges()) {
 				firstRecord();
 				displayRecords(currentEmployee);
 			}
 		} else if (e.getSource() == prevItem || e.getSource() == previous_btn) {
-			if (checkInput() && !checkForChanges()) {
+			if (checkTextfieldInput() && !checkForChanges()) {
 				previousRecord();
 				displayRecords(currentEmployee);
 			}
 		} else if (e.getSource() == nextItem || e.getSource() == next_btn) {
-			if (checkInput() && !checkForChanges()) {
+			if (checkTextfieldInput() && !checkForChanges()) {
 				nextRecord();
 				displayRecords(currentEmployee);
 			}
 		} else if (e.getSource() == lastItem || e.getSource() == last_btn) {
-			if (checkInput() && !checkForChanges()) {
+			if (checkTextfieldInput() && !checkForChanges()) {
 				lastRecord();
 				displayRecords(currentEmployee);
 			}
 		} else if (e.getSource() == listAll || e.getSource() == displayAll_btn) {
-			if (checkInput() && !checkForChanges())
+			if (checkTextfieldInput() && !checkForChanges())
 				if (isSomeoneToDisplay())
 					displayEmployeeSummaryDialog();
 		} else if (e.getSource() == create || e.getSource() == add_btn) {
-			if (checkInput() && !checkForChanges())
+			if (checkTextfieldInput() && !checkForChanges())
 				new AddRecordDialog(EmployeeDetails.this);
 		} else if (e.getSource() == modify || e.getSource() == edit_btn) {
-			if (checkInput() && !checkForChanges())
+			if (checkTextfieldInput() && !checkForChanges())
 				editDetails();
 		} else if (e.getSource() == delete || e.getSource() == deleteBtn) {
-			if (checkInput() && !checkForChanges())
+			if (checkTextfieldInput() && !checkForChanges())
 				deleteRecord();
 		} else if (e.getSource() == searchBySurname) {
-			if (checkInput() && !checkForChanges())
+			if (checkTextfieldInput() && !checkForChanges())
 				new SearchBySurnameDialog(EmployeeDetails.this);
 		}
 	}// end actionPerformed
@@ -1085,6 +1096,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 
 
 	// DocumentListener methods
+	@Override
 	public void changedUpdate(DocumentEvent d) {
 		change = true;
 		new JTextFieldLimit(20);
@@ -1128,4 +1140,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 
 	public void windowOpened(WindowEvent e) {
 	}
+
+
+	
 }// end class EmployeeDetails

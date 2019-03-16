@@ -46,7 +46,8 @@ public class RandomAccessEmployeeRecord extends Employee
    // Ensure that string is correct length
    private String readName( RandomAccessFile file ) throws IOException
    {
-      char name[] = new char[ 20 ], temp;
+      char name[] = new char[ 20 ];
+    	char temp;
 
       for ( int count = 0; count < name.length; count++ )
       {

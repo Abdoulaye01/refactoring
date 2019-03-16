@@ -4,12 +4,6 @@
  * 
  * */
 
-/*
- * 
- * This class is for accessing, creating and modifying records in a file
- * 
- * */
-
 import java.io.EOFException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
@@ -127,7 +121,7 @@ public class RandomFile {
 
 		// object to be written to file
 		RandomAccessEmployeeRecord record;
-		;
+
 
 		try // output values to file
 		{

@@ -30,10 +30,10 @@ public class SearchBySurnameDialog extends JDialog implements ActionListener{
 	JButton search_btn, cancel_btn;
 	JTextField searchField;
 	// constructor for search by surname dialog
-	public SearchBySurnameDialog(EmployeeDetails parent) {
+	public SearchBySurnameDialog(EmployeeDetails employeeDetails) {
 		setTitle("Search by Surname");
 		setModal(true);
-		this.employeeDetails = parent;
+		this.employeeDetails = employeeDetails;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 		JScrollPane scrollPane = new JScrollPane(searchPane());
