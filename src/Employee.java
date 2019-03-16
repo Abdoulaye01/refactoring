@@ -4,9 +4,10 @@
  * 
  * */
 
+
 public class Employee{
 	private int employeeId;
-	private String pps;
+	private String employeePps;
 	private String surname;
 	private String firstName;
 	private char gender;
@@ -17,7 +18,7 @@ public class Employee{
 	// Create Employee with no details
 	public Employee() {
 		this.employeeId = 0;
-		this.pps = "";
+		this.employeePps = "";
 		this.surname = "";
 		this.firstName = "";
 		this.gender = '\0';
@@ -30,7 +31,7 @@ public class Employee{
 	public Employee(int employeeId, String pps, String surname, String firstName, char gender, String department, double salary,
 			boolean fullTime) {
 		this.employeeId = employeeId;
-		this.pps = pps;
+		this.employeePps = pps;
 		this.surname = surname;
 		this.firstName = firstName;
 		this.gender = gender;
@@ -45,7 +46,7 @@ public class Employee{
 	}
 
 	public String getPps() {
-		return pps;
+		return employeePps;
 	}
 
 	public String getSurname() {
@@ -78,7 +79,7 @@ public class Employee{
 	}
 	
 	public void setPps(String pps) {
-		this.pps = pps;
+		this.employeePps = pps;
 	}
 
 	public void setSurname(String surname) {
@@ -113,7 +114,7 @@ public class Employee{
 		else
 			bool = "No";
 
-		return "Employee ID: " + this.employeeId + "\nPPS Number: " + this.pps + "\nSurname: " + this.surname
+		return "Employee ID: " + this.employeeId + "\nPPS Number: " + this.employeePps + "\nSurname: " + this.surname
 				+ "\nFirst Name: " + this.firstName + "\nGender: " + this.gender + "\nDepartment: " + this.department + "\nSalary: " + this.salary
 				+ "\nFull Time: " + bool;
 	}// end toString

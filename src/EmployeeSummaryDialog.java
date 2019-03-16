@@ -4,6 +4,14 @@
  * 
  * */
 
+/*
+ * 
+
+
+ * This is the summary dialog for displaying all Employee details
+ * 
+ * */
+
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -29,7 +37,7 @@ import net.miginfocom.swing.MigLayout;
 public class EmployeeSummaryDialog extends JDialog implements ActionListener {
 	// vector with all Employees details
 	Vector<Object> allEmployees;
-	JButton back;
+	JButton back_btn;
 	
 	public EmployeeSummaryDialog(Vector<Object> allEmployees) {
 		setTitle("Employee Summary");
@@ -101,9 +109,9 @@ public class EmployeeSummaryDialog extends JDialog implements ActionListener {
 		employeeTable.setAutoCreateRowSorter(true);
 		JScrollPane scrollPane = new JScrollPane(employeeTable);
 
-		buttonPanel.add(back = new JButton("Back"));
-		back.addActionListener(this);
-		back.setToolTipText("Return to main screen");
+		buttonPanel.add(back_btn = new JButton("Back"));
+		back_btn.addActionListener(this);
+		back_btn.setToolTipText("Return to main screen");
 		
 		summaryDialog.add(buttonPanel,"growx, pushx, wrap");
 		summaryDialog.add(scrollPane,"growx, pushx, wrap");
@@ -113,7 +121,7 @@ public class EmployeeSummaryDialog extends JDialog implements ActionListener {
 	}// end summaryPane
 
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == back){
+		if (e.getSource() == back_btn){
 			dispose();
 		}
 
