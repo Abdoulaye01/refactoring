@@ -28,10 +28,10 @@ public class AddRecordDialog extends JDialog implements ActionListener {
 	JButton save_btn, cancel_btn;
 	EmployeeDetails employeeDetails;
 	// constructor for add record dialog
-	public AddRecordDialog(EmployeeDetails parent) {
+	public AddRecordDialog(EmployeeDetails employeeDetails) {
 		setTitle("Add Record");
 		setModal(true);
-		this.employeeDetails = parent;
+		this.employeeDetails = employeeDetails;
 		this.employeeDetails.setEnabled(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
