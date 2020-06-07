@@ -4,6 +4,12 @@
  * 
  * */
 
+/*
+ * 
+ * This is a Random Access Employee record definition
+ * 
+ * */
+
 import java.io.RandomAccessFile;
 import java.io.IOException;
 
@@ -18,10 +24,10 @@ public class RandomAccessEmployeeRecord extends Employee
    } // end RandomAccessEmployeeRecord
 
    // Initialize record with details
-   public RandomAccessEmployeeRecord( int employeeId, String pps, String surname, String firstName, char gender, 
+   public RandomAccessEmployeeRecord( int employeeId, String employeePps, String surname, String firstName, char gender, 
 		   String department, double salary, boolean fullTime)
    {
-      super(employeeId, pps, surname, firstName, gender, department, salary, fullTime);
+      super(employeeId, employeePps, surname, firstName, gender, department, salary, fullTime);
    } // end RandomAccessEmployeeRecord
 
    // Read a record from specified RandomAccessFile

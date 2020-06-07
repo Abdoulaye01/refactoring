@@ -21,21 +21,44 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 
+/*
+ * 
+ * This is the dialog for Employee search by ID
+ * 
+ * */
+
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.border.EtchedBorder;
+
 public class SearchByIdDialog extends JDialog implements ActionListener {
-	EmployeeDetails parent;
-	JButton search, cancel;
+	EmployeeDetails employeeDetails;
+	JButton _search_btn, cancel_btn;
 	JTextField searchField;
 	// constructor for SearchByIdDialog 
 	public SearchByIdDialog(EmployeeDetails parent) {
 		setTitle("Search by Surname");
 		setModal(true);
-		this.parent = parent;
+		this.employeeDetails = parent;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 		JScrollPane scrollPane = new JScrollPane(searchPane());
 		setContentPane(scrollPane);
 
-		getRootPane().setDefaultButton(search);
+		getRootPane().setDefaultButton(_search_btn);
 		
 		setSize(500, 190);
 		setLocation(350, 250);
@@ -53,17 +76,17 @@ public class SearchByIdDialog extends JDialog implements ActionListener {
 
 		textPanel.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
 		textPanel.add(searchLabel = new JLabel("Enter ID:"));
-		searchLabel.setFont(this.parent.font1);
+		searchLabel.setFont(this.employeeDetails.font1);
 		textPanel.add(searchField = new JTextField(20));
-		searchField.setFont(this.parent.font1);
+		searchField.setFont(this.employeeDetails.font1);
 		searchField.setDocument(new JTextFieldLimit(20));
 		
-		buttonPanel.add(search = new JButton("Search"));
-		search.addActionListener(this);
-		search.requestFocus();
+		buttonPanel.add(_search_btn = new JButton("Search"));
+		_search_btn.addActionListener(this);
+		_search_btn.requestFocus();
 		
-		buttonPanel.add(cancel = new JButton("Cancel"));
-		cancel.addActionListener(this);
+		buttonPanel.add(cancel_btn = new JButton("Cancel"));
+		cancel_btn.addActionListener(this);
 
 		searchPanel.add(textPanel);
 		searchPanel.add(buttonPanel);
@@ -74,13 +97,13 @@ public class SearchByIdDialog extends JDialog implements ActionListener {
 	// action listener for save and cancel button
 	public void actionPerformed(ActionEvent e) {
 		// if option search, search for Employee
-		if (e.getSource() == search) {
+		if (e.getSource() == _search_btn) {
 			// try get correct valus from text field
 			try {
 				Double.parseDouble(searchField.getText());
-				this.parent.searchByIdField.setText(searchField.getText());
+				this.employeeDetails.searchByIdField.setText(searchField.getText());
 				// search Employee by ID
-				this.parent.searchEmployeeById();
+				this.employeeDetails.searchEmployeeById();
 				dispose();// dispose dialog
 			}// end try
 			catch (NumberFormatException num) {
@@ -90,7 +113,7 @@ public class SearchByIdDialog extends JDialog implements ActionListener {
 			}// end catch
 		}// end if
 		// else dispose dialog
-		else if (e.getSource() == cancel)
+		else if (e.getSource() == cancel_btn)
 			dispose();
 	}// end actionPerformed
 }// end class searchByIdDialog
